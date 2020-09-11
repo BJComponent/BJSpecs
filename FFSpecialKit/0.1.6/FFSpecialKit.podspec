@@ -30,29 +30,33 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
   
-  #自动创建FFSpecialKit.bundle
-  s.resource_bundles = {
-      'FFSpecialKit' => ['FFSpecialKit/Assets/*']
-  }
-  #不会创建bundle
-#  s.resources = ['FFSpecialKit/Assets/*']
-    
+  s.resources = ['FFSpecialKit/Assets/*.bundle']
 
-  s.subspec 'Special' do |ss|
-     ss.source_files = 'FFSpecialKit/Classes/Special/*'
-     ss.subspec 'Home' do |sss|
-         sss.source_files = 'FFSpecialKit/Classes/Special/Home/*'
-         sss.dependency 'Masonry'
-         sss.dependency 'YYWebImage'
-         sss.dependency 'FFUtils'
-         sss.dependency 'FFAPIs'
-         sss.dependency 'FFWdiget'
-         sss.dependency 'FFAuhtorKit_Category'
-         sss.dependency 'FFSpecialKit/Special/Detail'#本地依赖
-     end
-     ss.subspec 'Detail' do |sss|
-         sss.source_files = 'FFSpecialKit/Classes/Special/Detail/*'
-     end
-  end
+  
+  #自动创建FFSpecialKit.bundle
+#  s.resource_bundles = {
+#      'FFSpecialKit' => ['FFSpecialKit/Assets/*']
+#  }
+
+  #不会创建bundle
+  s.resources = ['FFSpecialKit/Assets/*']
+    
+    s.dependency 'FFUtils', '~> 0.1.5'
+    s.dependency 'FFAPIs', '~> 0.1.3'
+
+    s.subspec 'Special' do |ss|
+        ss.source_files = 'FFSpecialKit/Classes/Special/*'
+        ss.subspec 'Home' do |sss|
+            sss.source_files = 'FFSpecialKit/Classes/Special/Home/**/*.{h,m}'
+            sss.dependency 'Masonry'
+            sss.dependency 'YYWebImage'
+            sss.dependency 'FFWdiget'
+            sss.dependency 'FFAuhtorKit_Category'
+            sss.dependency 'FFSpecialKit/Special/Detail'#本地依赖
+        end
+        ss.subspec 'Detail' do |sss|
+            sss.source_files = 'FFSpecialKit/Classes/Special/Detail/**/*.{h,m}'
+        end
+    end
   
 end
